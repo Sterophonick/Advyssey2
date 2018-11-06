@@ -13,6 +13,8 @@ int main()
 	{
 		hrt_VblankIntrWait();
 		CPU(); 
+		GetKeypad();
+		MergeKeyData();
 		if(keyDown(KEY_R))
 		{
 			if(keyDown(KEY_L)) menu();

@@ -14,3 +14,11 @@ u8 Read(u16 addr)
 	}
 	return 0;
 }
+
+void Write(u16 addr, u8 value)
+{
+	if(addr < 0x400)
+	{
+		
+	}
+}

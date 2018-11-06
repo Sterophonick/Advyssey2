@@ -163,6 +163,9 @@ u8 CPU(void)
 			i8048.a = 0;
 			break;
 			
+		case 0x37: //CPL A
+			i8048.a=~i8048.a;
+			
          case 0xC6: /* JZ address */
             i8048.clk+=2;
             dat=Read(i8048.pc);
@@ -175,6 +178,46 @@ u8 CPU(void)
 		case 0x47: //swap a
 			return ( (i8048.a & 0x0F)<<4 | (i8048.a & 0xF0)>>4 ); 
 			break;
+			
+		case 0x48: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r0;
+				break;
+				
+		case 0x49: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r1;
+				break;
+				
+		case 0x4A: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r2;
+				break;
+				
+		case 0x4B: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r3;
+				break;
+				
+		case 0x4C: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r4;
+				break;
+				
+		case 0x4D: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r5;
+				break;
+				
+		case 0x4E: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r6;
+				break;
+				
+		case 0x4F: /* ORL A,Rr */
+				i8048.clk++;
+				i8048.a = i8048.a | i8048.r7;
+				break;
 			
 		case 0x68: //add a,r0
 			i8048.a+=i8048.r0;
@@ -214,6 +257,10 @@ u8 CPU(void)
             i8048.pc = 
             i8048.clk+=2;
             break;
+			
+		 case 0x95: //CPL F0
+			i8048.f0=~i8048.f0;
+			break;
 			
 		case 0x97: //clr c
 			i8048.c = 0;
@@ -257,7 +304,7 @@ u8 CPU(void)
 			break;
 			
 		 case 0xA7: /*mov @r7, a*/
-			O2IWRAM[i8048.r7] = i8048.a;
+			i8048.c=~i8048.c;
 			break;
 			
 		case 0xA8: //mov r0, a
@@ -290,6 +337,10 @@ u8 CPU(void)
 			
 		case 0xAF: //mov r7, a
 			i8048.r7 = i8048.a;
+			break;
+			
+		 case 0xB5: //CPL F1
+			i8048.f1=~i8048.f1;
 			break;
 			
 		case 0xB8: //mov r0, #data
@@ -332,6 +383,11 @@ u8 CPU(void)
 			i8048.r7 = O2BIOS[i8048.pc+2];
 			break;
 			
+		case 0xC7:  /* MOV a,#data */
+            i8048.clk+=2;
+            i8048.a = i8048.psw;
+            break;
+			
 		case 0xC8: //dec r0
 			i8048.r0--;
 			break;
@@ -364,6 +420,17 @@ u8 CPU(void)
 			i8048.r7--;
 			break;
 			
+			
+		case 0xE7: //RL A
+				i8048.clk++;
+				dat=i8048.a & 0x80;
+				i8048.a = i8048.a << 1;
+				if (dat)
+					i8048.a = i8048.a | 0x01;
+				else
+					i8048.a = i8048.a & 0xFE;
+				break;
+			
 		case 0xF0: //mov A,@R0
 			i8048.a = O2IWRAM[i8048.r0];
 			break;
@@ -371,6 +438,17 @@ u8 CPU(void)
 		case 0xF1: //mov A,@R1
 			i8048.a = O2IWRAM[i8048.r1];
 			break;
+			
+		case 0xF7: /* RLC A */
+				dat=i8048.cy;
+				i8048.cy=(i8048.a & 0x80) >> 7;
+				i8048.a = i8048.a << 1;
+				if (dat)
+					i8048.a = i8048.a | 0x01;
+				else
+					i8048.a = i8048.a & 0xFE;
+				i8048.clk++;
+				break;
 			
 		case 0xFF: //mov a,r7
 			i8048.a = i8048.r7;
