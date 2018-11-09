@@ -11,8 +11,8 @@ int main()
 	hrt_DSPDisableForceBlank();
 	while(1)
 	{
+		AdvYssey2_CPU();
 		hrt_VblankIntrWait();
-		CPU(); 
 		GetKeypad();
 		MergeKeyData();
 		if(keyDown(KEY_R))

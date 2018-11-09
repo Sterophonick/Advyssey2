@@ -56,7 +56,7 @@ const char *gl_help_text[6] = {
 	"by Sterophonick"
 };
 
-const char gl_exception[] = "PocketMini has crashed!";
+const char gl_exception[] = "AdvYssey2 has crashed!";
 
 const char *gl_exception_types[4] = {
 	"CPU Crash Instruction",

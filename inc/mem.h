@@ -1,17 +1,42 @@
-extern u8 O2BIOS[1024] HRT_EWRAM_DATA;
+extern u8 o2_a;
+extern u8 o2_r0;
+extern u8 o2_r1;
+extern u8 o2_r2;
+extern u8 o2_r3;
+extern u8 o2_r4;
+extern u8 o2_r5;
+extern u8 o2_r6;
+extern u8 o2_r7;
+extern u8 o2_p1;
+extern u8 o2_p2;
+extern u16 o2_pc;
+extern u8 o2_c;
+extern u8 o2_f0;
+extern u8 o2_f1;
+extern u8 o2_sp;
+extern u8 o2_psw;
+extern u8 o2_xirqen;
+extern u8 o2_tirqen;
+extern u8 o2_xirqpend;
+extern u8 o2_tirqpend;
+extern u8 o2_irqex;
+extern u8 o2_tflag;
+extern u8 o2_bs;
+extern u8 o2_ac;
+extern u8 o2_cy;
+extern u32 o2_clk;
+extern u16 o2_a11;
+extern u16 o2_a11ff;
+extern u8 o2_dat;
+extern u8 o2_timeron;
+extern u8 o2_itimer;
+extern u8 o2_adr;
+extern int o2_temp;
+extern u8 o2_pendirq;
+extern u8 O2BIOS[1024];
 extern u8 O2IWRAM[64];
-extern u8 O2VRAM[128];
+extern u8 O2ROMBANK[4096];
 extern u8 O2ROM[];
-extern u8 O2ROMBANK[1024];
-
-typedef struct
-{
-	u8 y;
-	u8 x;
-	u8 attr;
-}O2Spr;
-
-O2Spr O2Sprites[4];
-
 
 #define O2_KEY_REGISTER O2IWRAM[0x1A]
+extern void AdvYssey2_CPU();

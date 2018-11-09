@@ -40,7 +40,7 @@ u8 CPU(void)
 			break;
 			
          case 0x03: /* ADD A,#data */
-			i8048.a += O2BIOS[i8048.pc+2];
+			i8048.a += O2BIOS[i8048.pc++];
 			break;
 			
 		case 0x04: //JMP
@@ -100,7 +100,10 @@ u8 CPU(void)
             break;
 			
 		case 0x10: //INC @Rr
+		
+		case 0x11: //INC @Rr
 			
+
 			
          case 0x13: /* ADDC A,#data */
             i8048.clk+=2;
