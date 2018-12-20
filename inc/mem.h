@@ -1,42 +1,45 @@
-extern u8 o2_a;
-extern u8 o2_r0;
-extern u8 o2_r1;
-extern u8 o2_r2;
-extern u8 o2_r3;
-extern u8 o2_r4;
-extern u8 o2_r5;
-extern u8 o2_r6;
-extern u8 o2_r7;
-extern u8 o2_p1;
-extern u8 o2_p2;
-extern u16 o2_pc;
-extern u8 o2_c;
-extern u8 o2_f0;
-extern u8 o2_f1;
-extern u8 o2_sp;
-extern u8 o2_psw;
-extern u8 o2_xirqen;
-extern u8 o2_tirqen;
-extern u8 o2_xirqpend;
-extern u8 o2_tirqpend;
-extern u8 o2_irqex;
-extern u8 o2_tflag;
-extern u8 o2_bs;
-extern u8 o2_ac;
-extern u8 o2_cy;
-extern u32 o2_clk;
-extern u16 o2_a11;
-extern u16 o2_a11ff;
-extern u8 o2_dat;
-extern u8 o2_timeron;
-extern u8 o2_itimer;
-extern u8 o2_adr;
-extern int o2_temp;
-extern u8 o2_pendirq;
-extern u8 O2BIOS[1024];
-extern u8 O2IWRAM[64];
-extern u8 O2ROMBANK[4096];
-extern u8 O2ROM[];
+extern u8 MinxWRAM[4096];
+extern u8 MinxMMIO[256];
+extern u8 MinxBIOS[4096];
 
-#define O2_KEY_REGISTER O2IWRAM[0x1A]
-extern void AdvYssey2_CPU();
+extern u8 MinxROM[12544];
+
+extern u8 MinxOAM[95];
+
+#define PMR_REG_KEYPAD MinxMMIO[0x52]
+extern void GetKeypad();
+extern void MergeKeyData();
+
+#define PMR_PRC_SCROLL_Y MinxMMIO[0x85]
+#define PMR_PRC_SCROLL_X MinxMMIO[0x86]
+
+#define PMR_IRQ_PRI1		(MinxMMIO[0x20])
+#define PMR_IRQ_PRI2		(MinxMMIO[0x21])
+#define PMR_IRQ_PRI3		(MinxMMIO[0x22])
+#define PMR_IRQ_ENA1		(MinxMMIO[0x23])
+#define PMR_IRQ_ENA2		(MinxMMIO[0x24])
+#define PMR_IRQ_ENA3		(MinxMMIO[0x25])
+#define PMR_IRQ_ENA4		(MinxMMIO[0x26])
+#define PMR_IRQ_ACT1		(MinxMMIO[0x27])
+#define PMR_IRQ_ACT2		(MinxMMIO[0x28])
+#define PMR_IRQ_ACT3		(MinxMMIO[0x29])
+#define PMR_IRQ_ACT4		(MinxMMIO[0x2A])
+
+#define PMR_SYS_CTRL1		(MinxMMIO[0x00])
+#define PMR_SYS_CTRL2		(MinxMMIO[0x01])
+#define PMR_SYS_CTRL3		(MinxMMIO[0x02])
+
+#define PMR_LCD_CTRL (MinxMMIO[0xFE])
+#define PMR_LCD_DATA (MinxMMIO[0xFF])
+
+#define PMR_PRC_RATE (MinxMMIO[0x81])
+
+#define PMR_PRC_MAP_LO (MinxMMIO[0x82])
+#define PMR_PRC_MAP_MID (MinxMMIO[0x83])
+#define PMR_PRC_MAP_HI (MinxMMIO[0x84])
+
+#define PMR_PRC_SPR_LO (MinxMMIO[0x87])
+#define PMR_PRC_SPR_MID (MinxMMIO[0x88])
+#define PMR_PRC_SPR_HI (MinxMMIO[0x89])
+
+#define PMR_PRC_MODE (MinxMMIO[0x81])

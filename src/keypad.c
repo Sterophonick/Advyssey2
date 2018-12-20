@@ -1,51 +1,59 @@
 #include <libheart.h>
-#include "mem.h"
+#include "cpu.h"
+//0-F
 
-u8 keydata[5];
+u8 key[16];
 
-void GetKeypad()
+void Keypad()
 {
-	if(keyDown(KEY_UP)) //Up
+	if(keyDown(KEY_A))
 	{
-		keydata[1] = 1;
+		key[AdvYssey2->a_key] = 1;
 	}else{
-		keydata[1] = 0;
+		key[AdvYssey2->a_key] = 0;
 	}
-	if(keyDown(KEY_DOWN)) // DOwn
+	if(keyDown(KEY_B))
 	{
-		keydata[3] = 1;
+		key[AdvYssey2->b_key] = 1;
 	}else{
-		keydata[3] = 0;
+		key[AdvYssey2->b_key] = 0;
 	}
-	if(keyDown(KEY_LEFT)) //Left
+	if(keyDown(KEY_UP))
 	{
-		keydata[4] = 1;
+		key[AdvYssey2->up_key] = 1;
 	}else{
-		keydata[4] = 0;
+		key[AdvYssey2->up_key] = 0;
 	}
-	if(keyDown(KEY_RIGHT)) //Right
+	if(keyDown(KEY_DOWN))
 	{
-		keydata[2] = 1;
+		key[AdvYssey2->down_key] = 1;
 	}else{
-		keydata[2] = 0;
+		key[AdvYssey2->down_key] = 0;
 	}
-	if(keyDown(KEY_A)) //Fire
+	if(keyDown(KEY_LEFT))
 	{
-		keydata[5] = 1;
+		key[AdvYssey2->left_key] = 1;
 	}else{
-		keydata[5] = 0;
+		key[AdvYssey2->left_key] = 0;
 	}
-}
-
-void MergeKeyData()
-{
-	u8 regtemp;
-	regtemp |= keydata[0] << 0;
-	regtemp |= keydata[1] << 1;
-	regtemp |= keydata[2] << 2;
-	regtemp |= keydata[3] << 3;
-	regtemp |= keydata[4] << 4;
-	O2_KEY_REGISTER = regtemp;
+	if(keyDown(KEY_RIGHT))
+	{
+		key[AdvYssey2->right_key] = 1;
+	}else{
+		key[AdvYssey2->right_key] = 0;
+	}
+	if(keyDown(KEY_SELECT))
+	{
+		key[AdvYssey2->sel_key] = 1;
+	}else{
+		key[AdvYssey2->sel_key] = 0;
+	}
+	if(keyDown(KEY_START))
+	{
+		key[AdvYssey2->strt_key] = 1;
+	}else{
+		key[AdvYssey2->strt_key] = 0;
+	}
 }
 
 void MiscKeys()
